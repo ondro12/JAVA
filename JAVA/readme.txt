@@ -9,8 +9,7 @@ Systemy:  Win 7/8/8.1, Ubuntu - Testovano v NetBeans IDE (8.0.2)
 ........................................
 AUTHORS:
  
-Autori:   Matus Ondris, xondri047
-          Mrkva Marek, xmrkva00
+Autor:   Matus Ondris, xondri047
           
 Skupina:  grp188
 ........................................          
