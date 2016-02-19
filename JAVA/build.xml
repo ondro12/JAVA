@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Labyrinth_txt" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Labyrinth.</description>
+    
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    
+	<property name="dest-client" location="dest-client"/>
+    <property name="lib" location="lib"/>
+    	<property name="maps" location="examples"/>
+        <property name="doc" location="doc"/>
+    
+    <target name="clean">
+        <delete dir="${build}"/>
+		<delete dir="${dest-client}"/>
+         <delete dir="doc"/>
+    </target>
+    
+    <target name="compile-client" depends="clean" description="Compile">
+        <mkdir dir="${build}/client"/>
+        <javac includeantruntime="false"
+               srcdir="${src}/projekt"
+               destdir="${build}/client"
+              />
+               
+    </target>
+	<target name="jar-client" depends="compile-client,doc">
+        <mkdir dir="${dest-client}"/>
+          <copy todir="${build}/client/images">
+          <fileset dir="lib/images"/>
+          </copy>  
+        <mkdir dir="${dest-client}"/>
+        <jar destfile="${dest-client}/ija2015-client.jar" basedir="${build}/client">
+            <manifest>
+                <attribute name="Main-Class" value="projekt.Projekt"/>
+            </manifest>
+        </jar>
+    </target>
+    	
+	<target name="compile" depends="clean, compile-client,jar-client" description="Compile">
+    </target>
+	
+
+    <target name="doc">
+         <mkdir dir="doc/client"/> 
+         <javadoc sourcepath="src/projekt" destdir="doc/client"/>
+    </target>
+ 
+<target name="run">
+  <parallel>
+      <sequential>
+            <java fork="true" jar="${dest-client}/ija2015-client.jar"/>
+      </sequential>
+ </parallel>
+</target>
+
+</project>
